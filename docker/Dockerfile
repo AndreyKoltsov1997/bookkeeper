@@ -34,6 +34,8 @@ ENV JAVA_HOME=/usr/lib/jvm/java-11
 # Download Apache Bookkeeper, untar and clean up
 RUN set -x \
     && adduser "${BK_USER}" \
+    && yum clean all \
+    && rm -rf /var/cache/yum \
     && yum install -y java-11-openjdk-devel wget bash python3 sudo\
     && mkdir -pv /opt \
     && cd /opt \
