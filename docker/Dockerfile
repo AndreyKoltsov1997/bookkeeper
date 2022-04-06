@@ -41,7 +41,7 @@ RUN set -x \
     && cd /opt \
     && wget -q "${DISTRO_URL}" \
     && tar -xzf "$DISTRO_NAME.tar.gz" \
-    && mv bookkeeper-server-${BK_VERSION}/ /opt/bookkeeper/ \
+    && mv bookkeeper-server-4.15.0-SNAPSHOT-bin/ /opt/bookkeeper/ \
     && rm -rf "$DISTRO_NAME.tar.gz" \
     # install zookeeper shell
     && wget -q https://bootstrap.pypa.io/pip/2.7/get-pip.py \
