@@ -21,8 +21,8 @@ FROM centos:7
 MAINTAINER Apache BookKeeper <dev@bookkeeper.apache.org>
 
 ARG BK_VERSION=4.12.1
-ARG DISTRO_NAME=bookkeeper-server-${BK_VERSION}-bin
-ARG DISTRO_URL=https://archive.apache.org/dist/bookkeeper/bookkeeper-${BK_VERSION}/${DISTRO_NAME}.tar.gz
+ARG DISTRO_NAME=v4.15.0-rc0
+ARG DISTRO_URL=https://github.com/apache/bookkeeper/archive/refs/tags/v4.15.0-rc0.tar.gz
 
 ENV BOOKIE_PORT=3181
 ENV BOOKIE_HTTP_PORT=8080
@@ -40,12 +40,6 @@ RUN set -x \
     && mkdir -pv /opt \
     && cd /opt \
     && wget -q "${DISTRO_URL}" \
-    && wget -q "${DISTRO_URL}.asc" \
-    && wget -q "${DISTRO_URL}.sha512" \
-    && sha512sum -c ${DISTRO_NAME}.tar.gz.sha512 \
-    && wget https://dist.apache.org/repos/dist/release/bookkeeper/KEYS \
-    && gpg --import KEYS \
-    && gpg --batch --verify "$DISTRO_NAME.tar.gz.asc" "$DISTRO_NAME.tar.gz" \
     && tar -xzf "$DISTRO_NAME.tar.gz" \
     && mv bookkeeper-server-${BK_VERSION}/ /opt/bookkeeper/ \
     && rm -rf "$DISTRO_NAME.tar.gz" "$DISTRO_NAME.tar.gz.asc" "$DISTRO_NAME.tar.gz.sha512" \
